@@ -2,9 +2,7 @@
   <div class="app">
     <TheHeader />
     <main>
-      <div class="container">
         <router-view />
-      </div>
     </main>
   </div>
 </template>
@@ -32,8 +30,7 @@ export default defineComponent({
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #F9FAFB;
-  color: #101828;
+  color: var(--color-text-primary);
   line-height: 1.5;
 }
 
@@ -41,28 +38,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-main-bg);
 }
 
 main {
-  flex-grow: 1;
-  padding: 32px 16px;
-}
-
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-@media (min-width: 640px) {
-  main {
-    padding: 32px 24px;
-  }
-}
-
-@media (min-width: 1024px) {
-  main {
-    padding: 32px;
-  }
+  flex: 1;
 }
 </style>

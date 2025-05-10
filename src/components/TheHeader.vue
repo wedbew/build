@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="header"> 
     <div class="container">
       <h1 class="title">Timetable</h1>
-      <nav>
+      <nav class="nav">
         <router-link to="/" :class="{ active: $route.path === '/' }">Bus Lines</router-link>
         <router-link to="/stops" :class="{ active: $route.path === '/stops' }">Stops</router-link>
       </nav>
@@ -19,80 +19,64 @@ export default defineComponent({
 </script>
 
 <style scoped>
-header {
-  padding: 24px 16px;
-  border-bottom: 1px solid #E4E7EB;
-  background-color: white;
+.header {
+  padding: var(--spacing-lg) 0;
 }
 
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+.nav {
+  background-color: var(--color-white);
+  display: flex;
+  gap: var(--spacing-base);
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+  border-radius: var(--radius-md);
 }
 
 .title {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 28px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-2xl);
   line-height: 38px;
-  color: #101828;
-  margin-bottom: 16px;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-base);
 }
 
-nav {
-  display: flex;
-  gap: 16px;
-}
-
-nav a {
+.nav a {
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
   line-height: 20px;
-  color: #667085;
+  color: var(--color-nav-text);
   text-decoration: none;
-  padding: 8px 16px 8px 0;
+  padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: var(--transition-slow);
   cursor: pointer;
-  flex: 1;
-  max-width: 120px;
   text-align: center;
 }
 
-nav a:hover {
-  color: #101828;
+.nav a:hover {
+  color: var(--color-text-primary);
 }
 
-nav a.active {
-  color: #2563EB;
-  border-bottom: 2px solid #2563EB;
+.nav a.active {
+  color: var(--color-nav-active);
+  border-bottom: 2px solid var(--color-nav-active);
 }
 
 @media (min-width: 640px) {
-  header {
-    padding: 24px 24px;
-  }
-  
   .title {
-    font-size: 32px;
+    font-size: var(--font-size-3xl);
     line-height: 40px;
   }
   
-  nav {
-    gap: 32px;
+  .nav {
+    gap: var(--spacing-xl);
   }
   
-  nav a {
-    font-size: 16px;
-    max-width: 160px;
-  }
-}
-
-@media (min-width: 1024px) {
-  header {
-    padding: 24px 32px;
+  .nav a {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-md) var(--spacing-xl);
   }
 }
 </style> 

@@ -19,21 +19,20 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
+  padding: var(--spacing-2xl);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
   min-height: 200px;
 }
 
 .spinner {
   width: 48px;
   height: 48px;
-  border: 4px solid rgba(37, 99, 235, 0.1);
+  border: 4px solid var(--color-spinner-border);
   border-radius: 50%;
-  border-top-color: #2563EB;
+  border-top-color: var(--color-spinner);
   animation: spin 1s cubic-bezier(0.76, 0.35, 0.2, 0.7) infinite;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-base);
 }
 
 @keyframes spin {
@@ -42,8 +41,8 @@ export default defineComponent({
 
 p {
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: #667085;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
 }
 </style> 

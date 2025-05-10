@@ -9,6 +9,7 @@ interface State {
   selectedLine: number | null;
   selectedStop: string | null;
   stopsAscending: boolean;
+  linesAscending: boolean;
 }
 
 export default createStore<State>({
@@ -18,13 +19,16 @@ export default createStore<State>({
     error: null,
     selectedLine: null,
     selectedStop: null,
-    stopsAscending: true
+    stopsAscending: true,
+    linesAscending: true
   },
   getters: {
-    // Get all unique line numbers, sorted ascending
+    // Get all unique line numbers, sorted 
     lines: (state) => {
       const uniqueLines = [...new Set(state.stops.map(stop => stop.line))];
-      return uniqueLines.sort((a, b) => a - b);
+      return state.linesAscending 
+        ? uniqueLines.sort((a, b) => a - b)
+        : uniqueLines.sort((a, b) => b - a);
     },
     // Get all stops for the selected line
     stopsForSelectedLine: (state) => {
@@ -80,6 +84,9 @@ export default createStore<State>({
     },
     toggleStopsOrder(state) {
       state.stopsAscending = !state.stopsAscending;
+    },
+    toggleLinesOrder(state) {
+      state.linesAscending = !state.linesAscending;
     }
   },
   actions: {
@@ -103,6 +110,9 @@ export default createStore<State>({
     },
     toggleStopsOrder({ commit }) {
       commit('toggleStopsOrder');
+    },
+    toggleLinesOrder({ commit }) {
+      commit('toggleLinesOrder');
     }
   }
 })

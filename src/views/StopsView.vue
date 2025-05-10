@@ -2,40 +2,39 @@
   <div class="stops-view">
     <LoadingSpinner v-if="loading" />
     <ErrorMessage v-else-if="error" :message="error" />
-    <div v-else class="content">
-      <div class="search-bar">
-        <SearchInput 
-          v-model="searchTerm" 
-          placeholder="Search for stops..."
-        >
-          <template #icon>
-            <SearchIcon />
-          </template>
-        </SearchInput>
-      </div>
-      
-      <div class="stops-list-header">
-        <div class="column-header">
-          <h2 class="column-title">Bus Stops</h2>
-          <button class="sort-button" @click="toggleStopsOrder" aria-label="Sort bus stops">
-            <span class="sort-icon">
-              {{ stopsAscending ? '↑' : '↓' }}
-            </span>
-          </button>
+    <div v-else class="container">
+      <div class="stops-content card">
+        <div class="search-bar">
+          <SearchInput 
+            v-model="searchTerm" 
+            placeholder="Search for stops..."
+          >
+            <template #icon>
+              <SearchIcon />
+            </template>
+          </SearchInput>
         </div>
-      </div>
-      
-      <div class="stops-list">
-        <div 
-          v-for="stop in filteredStops" 
-          :key="stop" 
-          class="stop-item"
-        >
-          {{ stop }}
+        
+        <div class="stops-list-header">
+          <SortButton
+            title="Bus Stops"
+            :ascending="stopsAscending"
+            @toggle="toggleStopsOrder"
+          />
         </div>
-        <div v-if="filteredStops.length === 0" class="no-results">
-          No stops found matching your search.
-        </div>
+        
+        <ItemsList>
+          <div 
+            v-for="stop in filteredStops" 
+            :key="stop" 
+            class="list-item"
+          >
+            {{ stop }}
+          </div>
+          <div v-if="filteredStops.length === 0" class="no-results">
+            No stops found matching your search.
+          </div>
+        </ItemsList>
       </div>
     </div>
   </div>
@@ -48,6 +47,8 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import SearchInput from '@/components/SearchInput.vue';
 import SearchIcon from '@/components/SearchIcon.vue';
+import SortButton from '@/components/SortButton.vue';
+import ItemsList from '@/components/ItemsList.vue';
 
 export default defineComponent({
   name: 'StopsView',
@@ -55,7 +56,9 @@ export default defineComponent({
     LoadingSpinner,
     ErrorMessage,
     SearchInput,
-    SearchIcon
+    SearchIcon,
+    SortButton,
+    ItemsList
   },
   setup() {
     const store = useStore();
@@ -97,96 +100,32 @@ export default defineComponent({
   height: 100%;
 }
 
-.content {
+.stops-content {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
-  padding: 16px;
+  padding: var(--spacing-base);
 }
 
 .search-bar {
-  margin-bottom: 24px;
+  margin: var(--spacing-lg) 0;
 }
 
 .stops-list-header {
-  margin-bottom: 16px;
-}
-
-.column-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.column-title {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  color: #101828;
-  margin: 0;
-}
-
-.sort-button {
-  background: #F9FAFB;
-  border: 1px solid #D0D5DD;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.sort-button:hover {
-  background: #F0F9FF;
-  border-color: #84CAFF;
-}
-
-.sort-icon {
-  font-size: 14px;
-  color: #344054;
-}
-
-.stops-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  overflow-y: auto;
-  flex-grow: 1;
-  min-height: 300px;
-}
-
-.stop-item {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  color: #344054;
-  padding: 12px 16px;
-  border-radius: 6px;
-  border: 1px solid #EAECF0;
-  background: #FFFFFF;
-}
-
-.stop-item:nth-child(odd) {
-  background: #F9FAFB;
+  margin-bottom: var(--spacing-base);
 }
 
 .no-results {
   font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: #667085;
-  padding: 24px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-lg);
   text-align: center;
-  border: 2px dashed #E4E7EB;
-  border-radius: 8px;
-  margin-top: 16px;
-  background-color: #F9FAFB;
+  border: 3px dashed var(--color-border);
+  border-radius: var(--radius-base);
+  margin-top: var(--spacing-base);
+  background-color: var(--color-placeholder-bg);
   display: flex;
   align-items: center;
   justify-content: center;

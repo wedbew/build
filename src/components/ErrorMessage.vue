@@ -29,12 +29,12 @@ export default defineComponent({
 .error-message {
   display: flex;
   align-items: flex-start;
-  background-color: #FEF3F2;
-  border: 1px solid #FEE4E2;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 24px;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1);
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-base);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .icon {
@@ -43,15 +43,15 @@ export default defineComponent({
   justify-content: center;
   min-width: 28px;
   height: 28px;
-  margin-right: 12px;
-  margin-top: 2px;
+  margin-right: var(--spacing-md);
+  margin-top: var(--spacing-xs);
 }
 
 p {
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
   line-height: 24px;
-  color: #B42318;
+  color: var(--color-error-text);
 }
 </style> 

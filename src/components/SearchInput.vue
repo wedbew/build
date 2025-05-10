@@ -51,13 +51,13 @@ export default defineComponent({
   width: 100%;
   padding: 10px 14px 10px 42px;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color: #101828;
-  border: 1px solid #D0D5DD;
-  border-radius: 8px;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
   outline: none;
   height: 44px;
-  transition: all 0.15s ease;
+  transition: var(--transition-base);
 }
 
 .search-icon {
@@ -65,18 +65,18 @@ export default defineComponent({
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #667085;
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .search-input::placeholder {
-  color: #667085;
+  color: var(--color-text-secondary);
 }
 
 .search-input:focus {
-  border-color: #84CAFF;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  border-color: var(--color-active-border);
+  box-shadow: var(--shadow-focus);
 }
 </style> 
