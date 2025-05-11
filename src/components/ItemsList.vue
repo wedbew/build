@@ -43,16 +43,7 @@ export default defineComponent({
   position: relative;
   border: none;
   width: 100%;
-}
-
-:deep(.list-item::after) {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #EAEAED; /* Lighter gray color for the border */
+  border-bottom: 1px solid #EAEAED;
 }
 
 :deep(.list-item:hover) {

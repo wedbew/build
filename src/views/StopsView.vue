@@ -5,14 +5,16 @@
     <div v-else class="container">
       <div class="stops-content card">
         <div class="search-bar">
-          <SearchInput 
+          <TextInput 
             v-model="searchTerm" 
             placeholder="Search for stops..."
+            label="Search"
+            variant="small"
           >
             <template #icon>
               <SearchIcon />
             </template>
-          </SearchInput>
+          </TextInput>
         </div>
         
         <div class="stops-list-header">
@@ -45,7 +47,7 @@ import { defineComponent, ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
-import SearchInput from '@/components/SearchInput.vue';
+import TextInput from '@/components/TextInput.vue';
 import SearchIcon from '@/components/SearchIcon.vue';
 import SortButton from '@/components/SortButton.vue';
 import ItemsList from '@/components/ItemsList.vue';
@@ -55,7 +57,7 @@ export default defineComponent({
   components: {
     LoadingSpinner,
     ErrorMessage,
-    SearchInput,
+    TextInput,
     SearchIcon,
     SortButton,
     ItemsList
