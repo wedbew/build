@@ -143,12 +143,17 @@ export default defineComponent({
 
 .bus-lines-view {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .bus-lines-container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+  flex: 1;
+  min-height: 0;
 }
 
 .row {

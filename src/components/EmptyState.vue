@@ -41,9 +41,26 @@ export default defineComponent({
   padding: var(--spacing-xl);
   box-sizing: border-box;
   
-  /* Border with clear dashed style */
-  border: 2px dashed var(--color-border);
+  /* Border with SVG dashed pattern */
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%239A9DA4' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='25' stroke-linecap='butt'/%3e%3c/svg%3e");
+  border: none;
   border-radius: var(--radius-base);
   
+  /* Create a pseudo-element with the SVG background to use the CSS variable */
+  position: relative;
+}
+
+.empty-state::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 450px;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%239A9DA4' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='25' stroke-linecap='butt'/%3e%3c/svg%3e");
+  border-radius: var(--radius-base);
+  pointer-events: none;
+  z-index: 1;
 }
 </style> 

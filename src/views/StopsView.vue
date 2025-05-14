@@ -17,15 +17,14 @@
           </TextInput>
         </div>
         
-        <div class="stops-list-header">
-          <SortButton
-            title="Bus Stops"
-            :ascending="stopsAscending"
-            @toggle="toggleStopsOrder"
-          />
-        </div>
+        <ListHeader
+          title="Bus Stops"
+          sortable
+          :ascending="stopsAscending"
+          @toggle-sort="toggleStopsOrder"
+        />
         
-        <ItemsList>
+        <ItemsList :max-height="500">
           <div 
             v-for="stop in filteredStops" 
             :key="stop" 
@@ -33,9 +32,7 @@
           >
             {{ stop }}
           </div>
-          <div v-if="filteredStops.length === 0" class="no-results">
-            No stops found matching your search.
-          </div>
+          <EmptyState v-if="filteredStops.length === 0" message="No stops found matching your search." />
         </ItemsList>
       </div>
     </div>
@@ -49,8 +46,9 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 import TextInput from '@/components/TextInput.vue';
 import SearchIcon from '@/components/SearchIcon.vue';
-import SortButton from '@/components/SortButton.vue';
+import ListHeader from '@/components/ListHeader.vue';
 import ItemsList from '@/components/ItemsList.vue';
+import EmptyState from '@/components/EmptyState.vue';
 
 export default defineComponent({
   name: 'StopsView',
@@ -59,8 +57,9 @@ export default defineComponent({
     ErrorMessage,
     TextInput,
     SearchIcon,
-    SortButton,
-    ItemsList
+    ListHeader,
+    ItemsList,
+    EmptyState
   },
   setup() {
     const store = useStore();
@@ -100,6 +99,16 @@ export default defineComponent({
 <style scoped>
 .stops-view {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .stops-content {
@@ -107,30 +116,11 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   padding: var(--spacing-base);
+  flex: 1;
+  min-height: 0;
 }
 
 .search-bar {
-  margin: var(--spacing-lg) 0;
-}
-
-.stops-list-header {
-  margin-bottom: var(--spacing-base);
-}
-
-.no-results {
-  font-family: 'Inter', sans-serif;
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
-  padding: var(--spacing-lg);
-  text-align: center;
-  border: 3px dashed var(--color-border);
-  border-radius: var(--radius-base);
-  margin-top: var(--spacing-base);
-  background-color: var(--color-placeholder-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
+  margin-bottom: var(--spacing-lg);
 }
 </style> 

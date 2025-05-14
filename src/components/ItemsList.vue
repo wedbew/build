@@ -4,11 +4,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'ItemsList'
+const props = defineProps({
+  maxHeight: {
+    type: Number,
+    default: null
+  }
 });
 </script>
 
@@ -18,7 +21,7 @@ export default defineComponent({
   flex-direction: column;
   overflow-y: auto;
   flex-grow: 1;
-  max-height: calc(100% - 100px);
+  max-height: v-bind('props.maxHeight ? `${props.maxHeight}px` : "calc(100% - 100px)"');
   /* Extend beyond container padding */
   margin: 0 calc(var(--spacing-base) * -1);
   width: calc(100% + var(--spacing-base) * 2);

@@ -1,34 +1,43 @@
 <template>
-  <SortButton 
-    :title="title" 
-    :sortable="sortable" 
-    :ascending="ascending" 
-    size="sm"
-    @toggle="$emit('toggle-sort')" 
-  />
+  <div class="sort-header">
+    <h2 :class="['title', headerSize]">{{ title }}</h2>
+    <button v-if="sortable" class="sort-button" @click="$emit('toggle-sort')" :aria-label="`Sort ${title.toLowerCase()}`">
+      <SortIcon :flipped="!ascending" />
+    </button>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import SortButton from '@/components/SortButton.vue';
+import SortIcon from '@/components/SortIcon.vue';
 
 export default defineComponent({
   name: 'ListHeader',
   components: {
-    SortButton
+    SortIcon
   },
   props: {
     title: {
       type: String,
       required: true
     },
+    ascending: {
+      type: Boolean,
+      default: true
+    },
     sortable: {
       type: Boolean,
       default: false
     },
-    ascending: {
-      type: Boolean,
-      default: true
+    size: {
+      type: String,
+      default: 'lg',
+      validator: (value: string) => ['sm', 'base', 'lg'].includes(value)
+    }
+  },
+  computed: {
+    headerSize() {
+      return `size-${this.size}`;
     }
   },
   emits: ['toggle-sort']
@@ -36,18 +45,31 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.list-header {
+.sort-header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-base);
 }
 
-.list-title {
+.title {
   font-family: 'Inter', sans-serif;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-base);
   color: var(--color-text-primary);
   margin: 0;
+}
+
+.size-sm {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+}
+
+.size-base {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+}
+
+.size-lg {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
 }
 
 .sort-button {

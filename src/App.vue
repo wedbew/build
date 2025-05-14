@@ -2,7 +2,11 @@
   <div class="app">
     <TheHeader />
     <main>
-        <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
   </div>
 </template>
@@ -43,5 +47,18 @@ body {
 
 main {
   flex: 1;
+  overflow: hidden; /* Prevent scrollbars during transitions */
+  position: relative;
+}
+
+/* Fade transition for route changes */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
