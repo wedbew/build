@@ -10,11 +10,15 @@
         :placeholder="placeholder"
         class="text-input" 
         :id="inputId"
+        :aria-labelledby="inputId + '-label'"
+        :aria-invalid="error ? 'true' : undefined"
+        :aria-describedby="error ? inputId + '-error' : undefined"
       />
-      <label :class="['text-label', (modelValue || focused) ? 'text-label-active' : '']" :for="inputId">{{ label }}</label>
-      <div v-if="!modelValue" class="text-icon">
+      <label :class="['text-label', (modelValue || focused) ? 'text-label-active' : '']" :for="inputId" :id="inputId + '-label'">{{ label }}</label>
+      <div v-if="!modelValue" class="text-icon" aria-hidden="true">
         <slot name="icon"></slot>
       </div>
+      <div v-if="error" :id="inputId + '-error'" class="error-message" role="alert">{{ error }}</div>
     </div>
   </div>
 </template>
@@ -27,13 +31,15 @@ interface Props {
   placeholder?: string
   label?: string
   variant?: 'full' | 'small'
+  error?: string
 }
 
 withDefaults(defineProps<Props>(), {
   modelValue: '',
   placeholder: '',
   label: '',
-  variant: 'full'
+  variant: 'full',
+  error: ''
 });
 
 const emit = defineEmits<{

@@ -1,5 +1,5 @@
 <template>
-  <div class="items-list">
+  <div class="items-list" role="list" aria-label="Items List">
     <slot></slot>
   </div>
 </template>

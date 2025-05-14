@@ -10,6 +10,7 @@
             placeholder="Search for stops..."
             label="Search"
             variant="small"
+            :aria-controls="stopsList"
           >
             <template #icon>
               <SearchIcon />
@@ -24,11 +25,12 @@
           @toggle-sort="toggleStopsOrder"
         />
         
-        <ItemsList :max-height="500">
+        <ItemsList :max-height="500" :id="stopsList">
           <div 
             v-for="stop in filteredStops" 
             :key="stop" 
             class="list-item"
+            role="listitem"
           >
             {{ stop }}
           </div>
@@ -52,6 +54,7 @@ import EmptyState from '@/components/EmptyState.vue';
 
 const store = useStore();
 const searchTerm = ref('');
+const stopsList = ref('stops-list-' + Math.random().toString(36).substring(2, 9));
 
 onMounted(() => {
   store.dispatch('fetchStops');

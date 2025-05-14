@@ -1,6 +1,6 @@
 <template>
-  <div class="error-message">
-    <div class="icon">
+  <div class="error-message" role="alert" aria-live="assertive">
+    <div class="icon" aria-hidden="true">
       <ErrorIcon />
     </div>
     <p>{{ message || 'An error occurred. Please try again.' }}</p>

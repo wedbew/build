@@ -2,9 +2,9 @@
   <header class="header"> 
     <div class="container">
       <h1 class="title">Timetable</h1>
-      <nav class="nav">
-        <router-link to="/" :class="{ active: $route.path === '/' }">Bus Lines</router-link>
-        <router-link to="/stops" :class="{ active: $route.path === '/stops' }">Stops</router-link>
+      <nav class="nav" aria-label="Main Navigation">
+        <router-link to="/" :class="{ active: $route.path === '/' }" aria-current="$route.path === '/' ? 'page' : undefined">Bus Lines</router-link>
+        <router-link to="/stops" :class="{ active: $route.path === '/stops' }" aria-current="$route.path === '/stops' ? 'page' : undefined">Stops</router-link>
       </nav>
     </div>
   </header>
