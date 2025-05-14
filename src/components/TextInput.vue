@@ -19,57 +19,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref, withDefaults, defineProps, defineEmits } from 'vue';
 
-export default defineComponent({
-  name: 'TextInput',
-  props: {
-    modelValue: {
-      type: String,
-      default: ''
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    variant: {
-      type: String,
-      default: 'full',
-      validator: (value: string) => ['full', 'small'].includes(value)
-    }
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const focused = ref(false);
-    const inputId = ref(`text-input-${Math.random().toString(36).substring(2, 9)}`);
-    
-    const handleInput = (event: Event) => {
-      const target = event.target as HTMLInputElement;
-      emit('update:modelValue', target.value);
-    };
+interface Props {
+  modelValue?: string
+  placeholder?: string
+  label?: string
+  variant?: 'full' | 'small'
+}
 
-    const handleFocus = () => {
-      focused.value = true;
-    };
-
-    const handleBlur = () => {
-      focused.value = false;
-    };
-
-    return {
-      inputId,
-      focused,
-      handleInput,
-      handleFocus,
-      handleBlur
-    };
-  }
+withDefaults(defineProps<Props>(), {
+  modelValue: '',
+  placeholder: '',
+  label: '',
+  variant: 'full'
 });
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>();
+
+const focused = ref(false);
+const inputId = ref(`text-input-${Math.random().toString(36).substring(2, 9)}`);
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emit('update:modelValue', target.value);
+};
+
+const handleFocus = () => {
+  focused.value = true;
+};
+
+const handleBlur = () => {
+  focused.value = false;
+};
 </script>
 
 <style scoped>
@@ -90,15 +75,16 @@ export default defineComponent({
 .text-label {
   position: absolute;
   top: 50%;
-  left: 14px;
+  left: 10px;
   transform: translateY(-50%);
   padding: 0 4px;
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
-  background-color: var(--color-white);
   transition: var(--transition-base);
   z-index: 1;
   pointer-events: none;
+  background-color: var(--color-white);
+  color: var(--color-text-secondary);
 }
 
 .text-label-active {

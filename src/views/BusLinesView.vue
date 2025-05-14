@@ -75,8 +75,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue';
+<script setup lang="ts">
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
@@ -84,58 +84,32 @@ import EmptyState from '@/components/EmptyState.vue';
 import ItemsList from '@/components/ItemsList.vue';
 import ListHeader from '@/components/ListHeader.vue';
 
-export default defineComponent({
-  name: 'BusLinesView',
-  components: {
-    LoadingSpinner,
-    ErrorMessage,
-    EmptyState,
-    ItemsList,
-    ListHeader
-  },
-  setup() {
-    const store = useStore();
+const store = useStore();
 
-    onMounted(() => {
-      store.dispatch('fetchStops');
-    });
-
-    const loading = computed(() => store.state.loading);
-    const error = computed(() => store.state.error);
-    const lines = computed(() => store.getters.lines);
-    const selectedLine = computed(() => store.state.selectedLine);
-    const selectedStop = computed(() => store.state.selectedStop);
-    const stopsForSelectedLine = computed(() => store.getters.stopsForSelectedLine);
-    const timesForSelectedStop = computed(() => store.getters.timesForSelectedStop);
-    const stopsAscending = computed(() => store.state.stopsAscending);
-
-    const selectLine = (line: number) => {
-      store.dispatch('selectLine', line);
-    };
-
-    const selectBusStop = (stop: string) => {
-      store.dispatch('selectStop', stop);
-    };
-
-    const toggleStopsOrder = () => {
-      store.dispatch('toggleStopsOrder');
-    };
-
-    return {
-      loading,
-      error,
-      lines,
-      selectedLine,
-      selectedStop,
-      stopsForSelectedLine,
-      timesForSelectedStop,
-      stopsAscending,
-      selectLine,
-      selectBusStop,
-      toggleStopsOrder
-    };
-  }
+onMounted(() => {
+  store.dispatch('fetchStops');
 });
+
+const loading = computed(() => store.state.loading);
+const error = computed(() => store.state.error);
+const lines = computed(() => store.getters.lines);
+const selectedLine = computed(() => store.state.selectedLine);
+const selectedStop = computed(() => store.state.selectedStop);
+const stopsForSelectedLine = computed(() => store.getters.stopsForSelectedLine);
+const timesForSelectedStop = computed(() => store.getters.timesForSelectedStop);
+const stopsAscending = computed(() => store.state.stopsAscending);
+
+const selectLine = (line: number) => {
+  store.dispatch('selectLine', line);
+};
+
+const selectBusStop = (stop: string) => {
+  store.dispatch('selectStop', stop);
+};
+
+const toggleStopsOrder = () => {
+  store.dispatch('toggleStopsOrder');
+};
 </script>
 
 <style scoped>
@@ -245,7 +219,7 @@ export default defineComponent({
 }
 
 .sort-button:hover {
-  background-color: rgba(99, 102, 110, 0.1);
+  background-color: var(--color-button-hover-bg);
 }
 
 .flipped {
@@ -278,17 +252,17 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1952E1;
+  background: var(--color-bus-line);
   cursor: pointer;
   transition: var(--transition-base);
 }
 
 .bus-line-item:hover {
-  background: #1649CA;
+  background: var(--color-bus-line-hover);
 }
 
 .bus-line-item.active {
-  background: #2E3E6E;
+  background: var(--color-bus-line-active);
   color: var(--color-white);
 }
 

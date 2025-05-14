@@ -4,18 +4,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'EmptyState',
-  props: {
-    message: {
-      type: String,
-      required: true
-    }
-  }
-});
+defineProps<{
+  message: string
+}>();
 </script>
 
 <style scoped>

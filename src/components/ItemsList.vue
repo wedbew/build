@@ -5,13 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { withDefaults, defineProps } from 'vue';
 
-const props = defineProps({
-  maxHeight: {
-    type: Number,
-    default: null
-  }
+interface Props {
+  maxHeight?: number | null
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  maxHeight: null
 });
 </script>
 
@@ -46,15 +47,15 @@ const props = defineProps({
   position: relative;
   border: none;
   width: 100%;
-  border-bottom: 1px solid #EAEAED;
+  border-bottom: 1px solid var(--color-list-item-border);
 }
 
 :deep(.list-item:hover) {
-  background: #F8F8FB;
+  background: var(--color-list-hover-bg);
 }
 
 :deep(.list-item.active) {
-  color: #1952E1;
+  color: var(--color-primary-focus);
   background: var(--color-white);
 }
 

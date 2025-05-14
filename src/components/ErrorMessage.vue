@@ -7,22 +7,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps } from 'vue';
 import ErrorIcon from '@/components/ErrorIcon.vue';
 
-export default defineComponent({
-  name: 'ErrorMessage',
-  components: {
-    ErrorIcon
-  },
-  props: {
-    message: {
-      type: String,
-      default: ''
-    }
-  }
-});
+defineProps<{
+  message?: string
+}>();
 </script>
 
 <style scoped>
@@ -34,7 +25,6 @@ export default defineComponent({
   border-radius: var(--radius-md);
   padding: var(--spacing-base);
   margin-bottom: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
 }
 
 .icon {

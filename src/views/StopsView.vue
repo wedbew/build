@@ -39,8 +39,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue';
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
@@ -50,62 +50,32 @@ import ListHeader from '@/components/ListHeader.vue';
 import ItemsList from '@/components/ItemsList.vue';
 import EmptyState from '@/components/EmptyState.vue';
 
-export default defineComponent({
-  name: 'StopsView',
-  components: {
-    LoadingSpinner,
-    ErrorMessage,
-    TextInput,
-    SearchIcon,
-    ListHeader,
-    ItemsList,
-    EmptyState
-  },
-  setup() {
-    const store = useStore();
-    const searchTerm = ref('');
+const store = useStore();
+const searchTerm = ref('');
 
-    onMounted(() => {
-      store.dispatch('fetchStops');
-    });
-
-    const loading = computed(() => store.state.loading);
-    const error = computed(() => store.state.error);
-    const stopsAscending = computed(() => store.state.stopsAscending);
-    
-    const filteredStops = computed(() => {
-      const stops = store.getters.allStops(searchTerm.value);
-      return stopsAscending.value 
-        ? stops 
-        : [...stops].reverse();
-    });
-
-    const toggleStopsOrder = () => {
-      store.dispatch('toggleStopsOrder');
-    };
-
-    return {
-      loading,
-      error,
-      searchTerm,
-      filteredStops,
-      stopsAscending,
-      toggleStopsOrder
-    };
-  }
+onMounted(() => {
+  store.dispatch('fetchStops');
 });
+
+const loading = computed(() => store.state.loading);
+const error = computed(() => store.state.error);
+const stopsAscending = computed(() => store.state.stopsAscending);
+
+const filteredStops = computed(() => {
+  const stops = store.getters.allStops(searchTerm.value);
+  return stopsAscending.value 
+    ? stops 
+    : [...stops].reverse();
+});
+
+const toggleStopsOrder = () => {
+  store.dispatch('toggleStopsOrder');
+};
 </script>
 
 <style scoped>
 .stops-view {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;

@@ -7,41 +7,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps, computed, withDefaults, defineEmits } from 'vue';
 import SortIcon from '@/components/SortIcon.vue';
 
-export default defineComponent({
-  name: 'ListHeader',
-  components: {
-    SortIcon
-  },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    ascending: {
-      type: Boolean,
-      default: true
-    },
-    sortable: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: 'lg',
-      validator: (value: string) => ['sm', 'base', 'lg'].includes(value)
-    }
-  },
-  computed: {
-    headerSize() {
-      return `size-${this.size}`;
-    }
-  },
-  emits: ['toggle-sort']
+interface Props {
+  title: string
+  ascending?: boolean
+  sortable?: boolean
+  size?: 'sm' | 'base' | 'lg'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  ascending: true,
+  sortable: false,
+  size: 'lg'
 });
+
+defineEmits<{
+  (e: 'toggle-sort'): void
+}>();
+
+const headerSize = computed(() => `size-${props.size}`);
 </script>
 
 <style scoped>
@@ -85,6 +72,6 @@ export default defineComponent({
 }
 
 .sort-button:hover {
-  background-color: rgba(99, 102, 110, 0.1);
+  background-color: var(--color-button-hover-bg);
 }
 </style> 
