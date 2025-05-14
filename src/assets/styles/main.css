@@ -6,10 +6,27 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px; /* Base font size - WCAG compliance */
+}
+
 body {
   font-family: 'Inter', sans-serif;
   color: var(--color-text-primary);
   line-height: 1.5;
+}
+
+/* Font size accessibility classes - WCAG compliance */
+html.font-size-medium {
+  font-size: 18px; /* Medium - 1.125x base size */
+}
+
+html.font-size-large {
+  font-size: 20px; /* Large - 1.25x base size */
+}
+
+html.font-size-xl {
+  font-size: 24px; /* Extra Large - 1.5x base size */
 }
 
 .app {

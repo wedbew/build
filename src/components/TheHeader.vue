@@ -3,7 +3,10 @@
     <div class="container">
       <div class="header-top">
         <h1 class="title">Timetable</h1>
-        <ThemeToggle class="theme-toggle" />
+        <div class="controls">
+          <FontSizeToggle />
+          <ThemeToggle class="theme-toggle" />
+        </div>
       </div>
       <nav class="nav" aria-label="Main Navigation">
         <router-link to="/" :class="{ active: $route.path === '/' }" aria-current="$route.path === '/' ? 'page' : undefined">Bus Lines</router-link>
@@ -15,6 +18,7 @@
 
 <script setup lang="ts">
 import ThemeToggle from './ThemeToggle.vue';
+import FontSizeToggle from './FontSizeToggle.vue';
 </script>
 
 <style scoped>
@@ -29,8 +33,14 @@ import ThemeToggle from './ThemeToggle.vue';
   margin-bottom: var(--spacing-base);
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
 .theme-toggle {
-  margin-left: var(--spacing-lg);
+  margin-left: 0;
 }
 
 .nav {
@@ -87,6 +97,19 @@ import ThemeToggle from './ThemeToggle.vue';
   .nav a {
     font-size: var(--font-size-base);
     padding: var(--spacing-md) var(--spacing-xl);
+  }
+}
+
+@media (max-width: 639px) {
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-base);
+  }
+  
+  .controls {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 </style> 

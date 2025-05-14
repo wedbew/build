@@ -31,13 +31,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 :deep(.list-item) {
   font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-xs);
+  line-height: 1.33;
   letter-spacing: 0;
   color: var(--color-text-secondary);
   
-  padding: 20px 24px 19px 24px;
+  padding: var(--spacing-base) var(--spacing-lg) calc(var(--spacing-base) - 1px) var(--spacing-lg);
   text-align: left;
   background-color: var(--color-white);
   cursor: pointer;
@@ -46,6 +46,8 @@ const props = withDefaults(defineProps<Props>(), {
   border: none;
   width: 100%;
   border-bottom: 1px solid var(--color-list-item-border);
+  display: flex;
+  align-items: center;
 }
 
 :deep(.list-item:hover) {
@@ -71,6 +73,21 @@ const props = withDefaults(defineProps<Props>(), {
   min-height: 100%;
   background-color: var(--color-white);
   transition: var(--transition-base);
+}
+
+/* Responsive adjustments for list items */
+@media (min-width: 640px) {
+  :deep(.list-item) {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Adjust for different font sizes */
+html.font-size-medium :deep(.list-item),
+html.font-size-large :deep(.list-item),
+html.font-size-xl :deep(.list-item) {
+  padding-top: calc(var(--spacing-base) - 0.25rem);
+  padding-bottom: calc(var(--spacing-base) - 0.25rem - 1px);
 }
 
 @media (max-width: 640px) {

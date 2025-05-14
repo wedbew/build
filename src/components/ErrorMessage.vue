@@ -3,7 +3,7 @@
     <div class="icon" aria-hidden="true">
       <ErrorIcon />
     </div>
-    <p>{{ message || 'An error occurred. Please try again.' }}</p>
+    <p class="error-message-text">{{ message || 'An error occurred. Please try again.' }}</p>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ defineProps<{
   margin-top: var(--spacing-xs);
 }
 
-p {
+.error-message-text {
   font-family: 'Inter', sans-serif;
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-base);
