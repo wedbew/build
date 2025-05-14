@@ -3,7 +3,6 @@
     <LoadingSpinner v-if="loading" />
     <ErrorMessage v-else-if="error" :message="error" />
     <div v-else class="container bus-lines-container">
-      <!-- First row - Bus Lines -->
       <div class="row bus-lines-row">
         <div class="column">
           <h2 class="column-title">Select Bus Lines</h2>
@@ -21,9 +20,7 @@
         </div>
       </div>
 
-      <!-- Second row - Bus Stops and Time -->
       <div class="row stops-time-row">
-        <!-- Bus Stops Column -->
         <div v-if="!selectedLine" class="empty-column">
           <EmptyState message="Please select the bus line first" />
         </div>
@@ -52,7 +49,6 @@
           </ItemsList>
         </div>
 
-        <!-- Time Column -->
         <div v-if="!selectedLine || !selectedStop" class="empty-column">
           <EmptyState message="Please select the bus stop first" />
         </div>
@@ -113,8 +109,6 @@ const toggleStopsOrder = () => {
 </script>
 
 <style scoped>
-/* Remove local :root CSS variables since they're now defined globally */
-
 .bus-lines-view {
   height: 100%;
   display: flex;
@@ -135,10 +129,9 @@ const toggleStopsOrder = () => {
   flex-direction: column;
   gap: var(--spacing-lg);
   width: 100%;
-  margin: 0; /* Ensure no negative margins */
+  margin: 0;
 }
 
-/* Empty column that will contain the EmptyState */
 .empty-column {
   flex: 1;
   display: flex;
@@ -152,7 +145,6 @@ const toggleStopsOrder = () => {
   overflow: hidden;
 }
 
-/* Second row layout for stops and time columns */
 .stops-time-row {
   display: flex;
   flex-direction: column;
@@ -267,11 +259,10 @@ const toggleStopsOrder = () => {
   color: var(--color-white);
 }
 
-/* Apply min-height only to columns in the stops-time-row */
 .stops-time-row .column {
   min-height: 300px;
   max-height: 500px;
-  overflow: hidden; /* Prevents overflow of child content */
+  overflow: hidden;
 }
 
 @media (max-height: 800px) {

@@ -16,7 +16,6 @@ import TheHeader from '@/components/TheHeader.vue';
 </script>
 
 <style>
-/* Global styles for theme transition */
 body, html {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--color-main-bg);

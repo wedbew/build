@@ -23,16 +23,13 @@ const props = withDefaults(defineProps<Props>(), {
   overflow-y: auto;
   flex-grow: 1;
   max-height: v-bind('props.maxHeight ? `${props.maxHeight}px` : "calc(100% - 100px)"');
-  /* Extend beyond container padding */
   margin: 0 calc(var(--spacing-base) * -1);
   width: calc(100% + var(--spacing-base) * 2);
-  position: relative; /* Ensure position context for children */
-  min-height: 400px; /* Match EmptyState minimum height */
+  position: relative;
+  min-height: 400px;
 }
 
-/* Apply these styles to immediate children of our list */
 :deep(.list-item) {
-  /* Typography */
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -40,7 +37,6 @@ const props = withDefaults(defineProps<Props>(), {
   letter-spacing: 0;
   color: var(--color-text-secondary);
   
-  /* Layout */
   padding: 20px 24px 19px 24px;
   text-align: left;
   background-color: var(--color-white);
@@ -65,22 +61,21 @@ const props = withDefaults(defineProps<Props>(), {
   cursor: default;
 }
 
-/* Make EmptyState fill the entire list container */
 :deep(.empty-state) {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  height: auto; /* Let height be determined by container */
-  min-height: 100%; /* Ensure it fills at least 100% of parent */
+  height: auto;
+  min-height: 100%;
   background-color: var(--color-white);
   transition: var(--transition-base);
 }
 
 @media (max-width: 640px) {
   .items-list {
-    min-height: 500px; /* Increase minimum height on mobile devices to match EmptyState */
+    min-height: 500px;
   }
 }
 </style> 
