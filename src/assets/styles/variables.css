@@ -24,6 +24,34 @@
   --color-box-shadow: rgba(16, 24, 40, 0.1);
   --color-focus-shadow: rgba(66, 153, 225, 0.2);
   
+  /* Bootstrap compatibility variables */
+  --bs-card-bg: var(--color-white);
+  
+  /* Dark Theme Colors */
+  --dark-color-main-bg: #121212;
+  --dark-color-white: #1E1E1E;
+  --dark-color-bus-line: #2E6AF3;
+  --dark-color-bus-line-hover: #5182F6;
+  --dark-color-bus-line-active: #6C8AD0;
+  --dark-color-border: #666666;
+  --dark-color-text-primary: #E0E0E0;
+  --dark-color-text-secondary: #A0A0A0;
+  --dark-color-primary-focus: #2E6AF3;
+  --dark-color-error-bg: #2C1514;
+  --dark-color-error-border: #4D312F;
+  --dark-color-error-text: #E87D75;
+  --dark-color-error-icon: #F07167;
+  --dark-color-nav-text: #A0A0A0;
+  --dark-color-nav-active: #5182F6;
+  --dark-color-input-border: #444444;
+  --dark-color-list-item-border: #333333;
+  --dark-color-list-hover-bg: #252525;
+  --dark-color-button-hover-bg: rgba(255, 255, 255, 0.1);
+  --dark-color-spinner-border: rgba(80, 130, 245, 0.1);
+  --dark-color-spinner: #5182F6;
+  --dark-color-box-shadow: rgba(0, 0, 0, 0.5);
+  --dark-color-focus-shadow: rgba(80, 130, 245, 0.3);
+  
   /* Spacing */
   --spacing-xs: 0.25rem; /* 4px */
   --spacing-sm: 0.5rem; /* 8px */
@@ -60,4 +88,34 @@
   --transition-base: all 0.15s ease;
   --transition-fast: all 0.1s ease;
   --transition-slow: all 0.2s ease;
+}
+
+/* Dark theme class to be applied to html or body element */
+.dark-theme {
+  --color-main-bg: var(--dark-color-main-bg);
+  --color-white: var(--dark-color-white);
+  --color-bus-line: var(--dark-color-bus-line);
+  --color-bus-line-hover: var(--dark-color-bus-line-hover);
+  --color-bus-line-active: var(--dark-color-bus-line-active);
+  --color-border: var(--dark-color-border);
+  --color-text-primary: var(--dark-color-text-primary);
+  --color-text-secondary: var(--dark-color-text-secondary);
+  --color-primary-focus: var(--dark-color-primary-focus);
+  --color-error-bg: var(--dark-color-error-bg);
+  --color-error-border: var(--dark-color-error-border);
+  --color-error-text: var(--dark-color-error-text);
+  --color-error-icon: var(--dark-color-error-icon);
+  --color-nav-text: var(--dark-color-nav-text);
+  --color-nav-active: var(--dark-color-nav-active);
+  --color-input-border: var(--dark-color-input-border);
+  --color-list-item-border: var(--dark-color-list-item-border);
+  --color-list-hover-bg: var(--dark-color-list-hover-bg);
+  --color-button-hover-bg: var(--dark-color-button-hover-bg);
+  --color-spinner-border: var(--dark-color-spinner-border);
+  --color-spinner: var(--dark-color-spinner);
+  --color-box-shadow: var(--dark-color-box-shadow);
+  --color-focus-shadow: var(--dark-color-focus-shadow);
+  
+  /* Bootstrap compatibility variables */
+  --bs-card-bg: var(--dark-color-white);
 } 

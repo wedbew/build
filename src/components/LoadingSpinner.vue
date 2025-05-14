@@ -12,9 +12,10 @@
   align-items: center;
   justify-content: center;
   padding: var(--spacing-2xl);
-  background: var(--color-white);
+  background-color: var(--color-white);
   border-radius: var(--radius-md);
   min-height: 200px;
+  transition: var(--transition-base);
 }
 
 .spinner {

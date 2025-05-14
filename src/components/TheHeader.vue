@@ -1,7 +1,10 @@
 <template>
   <header class="header"> 
     <div class="container">
-      <h1 class="title">Timetable</h1>
+      <div class="header-top">
+        <h1 class="title">Timetable</h1>
+        <ThemeToggle class="theme-toggle" />
+      </div>
       <nav class="nav" aria-label="Main Navigation">
         <router-link to="/" :class="{ active: $route.path === '/' }" aria-current="$route.path === '/' ? 'page' : undefined">Bus Lines</router-link>
         <router-link to="/stops" :class="{ active: $route.path === '/stops' }" aria-current="$route.path === '/stops' ? 'page' : undefined">Stops</router-link>
@@ -10,9 +13,24 @@
   </header>
 </template>
 
+<script setup lang="ts">
+import ThemeToggle from './ThemeToggle.vue';
+</script>
+
 <style scoped>
 .header {
   padding: var(--spacing-lg) 0;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-base);
+}
+
+.theme-toggle {
+  margin-left: var(--spacing-lg);
 }
 
 .nav {
@@ -30,7 +48,7 @@
   font-size: var(--font-size-2xl);
   line-height: 38px;
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-base);
+  margin: 0;
 }
 
 .nav a {

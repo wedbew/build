@@ -3,7 +3,7 @@
     <LoadingSpinner v-if="loading" />
     <ErrorMessage v-else-if="error" :message="error" />
     <div v-else class="container">
-      <div class="stops-content card">
+      <div class="stops-content app-card">
         <div class="search-bar">
           <TextInput 
             v-model="searchTerm" 

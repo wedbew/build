@@ -168,11 +168,12 @@ const toggleStopsOrder = () => {
 
 .column {
   flex: 1;
-  background: var(--color-white);
+  background-color: var(--color-white);
   border-radius: var(--radius-md);
   padding: var(--spacing-base);
   display: flex;
   flex-direction: column;
+  transition: var(--transition-base);
 }
 
 .column-header {

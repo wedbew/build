@@ -107,11 +107,14 @@ const handleBlur = () => {
   font-family: 'Inter', sans-serif;
   font-size: var(--font-size-base);
   color: var(--color-text-primary);
+  background-color: var(--color-white) !important;
   border: 1px solid var(--color-input-border);
   border-radius: var(--radius-md);
   outline: none;
   height: 44px;
   transition: var(--transition-base);
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .text-icon {
@@ -133,6 +136,7 @@ const handleBlur = () => {
 .text-input:focus {
   border-color: var(--color-primary-focus);
   box-shadow: var(--shadow-focus);
+  background-color: var(--color-white) !important;
 }
 
 .text-input:focus ~ .text-label {
@@ -145,5 +149,18 @@ const handleBlur = () => {
   top: 0px;
   transform: translateY(-50%) scale(0.85);
   color: var(--color-text-secondary);
+}
+
+/* Dark mode support */
+:root.dark-theme .text-input {
+  background-color: var(--dark-color-white) !important;
+}
+
+:root.dark-theme .text-input:focus {
+  background-color: var(--dark-color-white) !important;
+}
+
+:root.dark-theme .text-label {
+  background-color: var(--dark-color-white);
 }
 </style> 

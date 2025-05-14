@@ -58,11 +58,23 @@ main {
 }
 
 /* Common component styles */
-.card {
-  background: var(--color-white);
+.app-card {
+  background-color: var(--color-white);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
   padding: var(--spacing-base);
+  border: 0;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+/* Bootstrap compatibility class */
+.bs-card {
+  background-color: var(--bs-card-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-base);
+  border: 0;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
 }
 
 .btn {
@@ -159,9 +171,10 @@ main {
 
 .column {
   flex: 1;
-  background: var(--color-white);
+  background-color: var(--color-white);
   border-radius: var(--radius-md);
   padding: var(--spacing-base);
   display: flex;
   flex-direction: column;
+  transition: var(--transition-base);
 }
